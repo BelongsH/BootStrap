@@ -1,0 +1,2 @@
+include ':app', ':bootstrap-annotation', ':bootstrap-compiler', ':bootstrap-core'
+rootProject.name='AppBootStrap'

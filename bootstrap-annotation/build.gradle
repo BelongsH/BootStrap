@@ -1,0 +1,16 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+//apply from: rootProject.file('gradle/gradle-nexus-push.gradle')
+//apply from: rootProject.file('gradle/gradle-bintray-push.gradle')
+apply from: rootProject.file('gradle/gradle-bintray-push2.gradle')

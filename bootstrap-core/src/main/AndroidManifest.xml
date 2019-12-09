@@ -1,0 +1,14 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.balala.bootstrap.core">
+
+    <application>
+        <provider
+            android:name=".BootStrapProvider"
+            android:authorities="${applicationId}.bootstrap.provider"
+            android:directBootAware="false"
+            android:exported="false"
+            android:multiprocess="true" />
+
+    </application>
+
+</manifest>
