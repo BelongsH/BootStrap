@@ -4,7 +4,7 @@ import android.app.Application;
 import android.widget.Toast;
 
 import com.balala.bootstrap.annotation.BootStrapApp;
-import com.balala.bootstrap.bridge.BootstrapWrapApplication;
+import com.balala.bootstrap.bridge.BootStrapProxy;
 
 /**
  * <pre>
@@ -16,7 +16,7 @@ import com.balala.bootstrap.bridge.BootstrapWrapApplication;
  * </pre>
  */
 @BootStrapApp(name = "HelloApp6", priority = 6)
-public class HelloApp6 extends BootstrapWrapApplication {
+public class HelloApp6 extends BootStrapProxy {
     @Override
     public void onCreate(Application application) {
         Toast.makeText(application, "HelloApp6", Toast.LENGTH_SHORT).show();

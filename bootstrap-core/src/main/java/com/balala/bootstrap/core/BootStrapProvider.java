@@ -6,8 +6,6 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 
-import java.util.Objects;
-
 /**
  * <pre>
  *     author : 刘辉良
@@ -20,9 +18,11 @@ import java.util.Objects;
 public class BootStrapProvider extends ContentProvider {
     @Override
     public boolean onCreate() {
-        Application application = (Application) Objects.requireNonNull(getContext()).getApplicationContext();
-        BootStrapUtils.init(application);
-        BootStrapApplicationCore.invokeApplicaitonOnCreate(application);
+        if (getContext() != null) {
+            Application application = (Application) getContext().getApplicationContext();
+            BootStrapUtils.init(application);
+            BootStrapApplicationCore.invokeApplicaitonOnCreate(application);
+        }
         return false;
     }
 

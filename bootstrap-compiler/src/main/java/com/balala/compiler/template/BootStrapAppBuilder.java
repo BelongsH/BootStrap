@@ -33,7 +33,7 @@ public class BootStrapAppBuilder extends JsonWriterTemplate {
 
     private Map<String, List<Map<String, String>>> map = new HashMap<>();
 
-    private static final String DEFAULT_NAME = "com.balala.bootstrap.bridge.BootstrapWrapApplication";
+    private static final String DEFAULT_NAME = "com.balala.bootstrap.bridge.BootStrapProxy";
 
 
     public BootStrapAppBuilder(ProcessingEnvironment processingEnvironment) {

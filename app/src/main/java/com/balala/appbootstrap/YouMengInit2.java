@@ -4,7 +4,7 @@ import android.app.Application;
 import android.widget.Toast;
 
 import com.balala.bootstrap.annotation.Component;
-import com.balala.bootstrap.bridge.BootstrapWrapApplication;
+import com.balala.bootstrap.bridge.BootStrapProxy;
 
 /**
  * <pre>
@@ -17,7 +17,7 @@ import com.balala.bootstrap.bridge.BootstrapWrapApplication;
  */
 
 @Component(name = "hello2",group = "list")
-public class YouMengInit2 extends BootstrapWrapApplication {
+public class YouMengInit2 extends BootStrapProxy {
 
     @Override
     public void onCreate(Application application) {

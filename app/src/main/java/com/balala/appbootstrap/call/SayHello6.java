@@ -15,8 +15,8 @@ import com.balala.bootstrap.bridge.IBootstrap;
  *     version: 1.0
  * </pre>
  */
-@Component(group = "sayHello", name = "SayHello3")
-public class SayHello6 {
-
-
-}
+//@Component(group = "sayHello", name = "SayHello3")
+//public class SayHello6 {
+//
+//
+//}

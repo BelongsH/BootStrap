@@ -1,7 +1,8 @@
 package com.balala.bootstrap.model;
 
-import com.balala.bootstrap.bridge.BootstrapWrapApplication;
+import com.balala.bootstrap.bridge.BootStrapProxy;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -13,12 +14,12 @@ import java.util.Map;
  *     version: 1.0
  * </pre>
  */
-public class BootStrapAppModel {
+public class BootStrapAppModel implements Serializable {
     public String isMain;
     public int priority;
     public String name;
     public String className;
-    public BootstrapWrapApplication bootstrapWrapApplication;
+    public BootStrapProxy bootStrapProxy;
 
 
     public static BootStrapAppModel transform(Map<String, String> bean) {

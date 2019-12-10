@@ -11,7 +11,7 @@ import android.app.Application;
  *     version: 1.0
  * </pre>
  */
-public abstract class BootstrapWrapApplication implements IBootstrap {
+public abstract class BootStrapProxy implements IBootstrap {
 
 
     /**

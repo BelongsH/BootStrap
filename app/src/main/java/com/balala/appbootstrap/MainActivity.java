@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 //        BootStrap.invokeGroupMethod("sayHello", this);
+//        BootStrap.findListForGroup("")
 //        BootStrap.invokeGroupMethod("list", getApplication());
     }
 }
