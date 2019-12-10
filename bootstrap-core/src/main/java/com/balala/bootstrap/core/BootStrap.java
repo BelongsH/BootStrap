@@ -19,7 +19,7 @@ public class BootStrap {
 
 
     /***
-     *  根据组名，获取改组实例
+     *  根据组名，获取该组实例
      * @param group  组名
      * @return 组实例
      */
@@ -44,6 +44,21 @@ public class BootStrap {
             e.printStackTrace();
         }
     }
+
+
+//    /***
+//     *  根据组名，获取该实例
+//     * @param name 实例名称
+//     * @return 组实例
+//     */
+//    public static IBootstrap findListForName(String name) {
+//        try {
+//            return BootStrapCore.findListForGroupMain(group);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return new ArrayList<>();
+//    }
 
 
 }

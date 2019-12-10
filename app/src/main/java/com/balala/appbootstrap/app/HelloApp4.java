@@ -1,10 +1,9 @@
 package com.balala.appbootstrap.app;
 
 import android.app.Application;
-import android.widget.Toast;
 
 import com.balala.bootstrap.annotation.BootStrapApp;
-import com.balala.bootstrap.bridge.BootstrapWrapApplication;
+import com.balala.bootstrap.bridge.BootStrapProxy;
 
 /**
  * <pre>
@@ -16,9 +15,10 @@ import com.balala.bootstrap.bridge.BootstrapWrapApplication;
  * </pre>
  */
 @BootStrapApp(name = "HelloApp4",priority = 5,isMainThread = false)
-public class HelloApp4 extends BootstrapWrapApplication {
+public class HelloApp4 extends BootStrapProxy {
     @Override
     public void onCreate(Application application) {
-        Toast.makeText(application, "HelloApp4", Toast.LENGTH_SHORT).show();
+        System.out.println("HelloApp4");
+//        Toast.makeText(application, "HelloApp4", Toast.LENGTH_SHORT).show();
     }
 }

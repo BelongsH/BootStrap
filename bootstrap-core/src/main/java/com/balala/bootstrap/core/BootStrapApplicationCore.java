@@ -2,7 +2,7 @@ package com.balala.bootstrap.core;
 
 import android.app.Application;
 
-import com.balala.bootstrap.bridge.BootstrapWrapApplication;
+import com.balala.bootstrap.bridge.BootStrapProxy;
 import com.balala.bootstrap.bridge.IBootstrap;
 import com.balala.bootstrap.model.BootStrapAppModel;
 
@@ -53,7 +53,7 @@ public class BootStrapApplicationCore {
      * @param args app
      * @throws Exception
      */
-    private static void invokeApp(Object... args) throws Exception {
+    private static void invokeApp(final Object... args) throws Exception {
         List<Map<String, String>> targetGroup = findClassMap2Cache().get(DEFAULT_APP_NAME);
         if (targetGroup == null || targetGroup.isEmpty()) return;
 
@@ -65,14 +65,17 @@ public class BootStrapApplicationCore {
             for (IBootstrap iBootstrap : values) {
                 String name = iBootstrap.getClass().getName();
                 if (name.equals(model.className)) {
-                    model.bootstrapWrapApplication = (BootstrapWrapApplication) iBootstrap;
+                    //只过滤包含->BootstrapWrapApplication接口
+                    if (iBootstrap instanceof BootStrapProxy) {
+                        model.bootStrapProxy = (BootStrapProxy) iBootstrap;
+                    }
                 }
             }
             models.add(model);
         }
 
         //对线程进行分组
-        List<BootStrapAppModel> runnableExecute = new ArrayList<>();
+        final List<BootStrapAppModel> runnableExecute = new ArrayList<>();
         List<BootStrapAppModel> mainThreadExecute = new ArrayList<>();
         for (BootStrapAppModel model : models) {
             boolean temp = model.isMain.equals("1") ? mainThreadExecute.add(model) : runnableExecute.add(model);
@@ -81,26 +84,18 @@ public class BootStrapApplicationCore {
         Collections.sort(mainThreadExecute, new ComparatorWarp());
         //执行方法,主函数
         for (BootStrapAppModel model : mainThreadExecute) {
-            executeMethod(model.bootstrapWrapApplication, args);
+            model.bootStrapProxy.execute(args);
         }
 
         //执行方法，异步函数
-        new AppExecutors().diskIO().execute(() -> {
-            for (BootStrapAppModel model : runnableExecute) {
-                executeMethod(model.bootstrapWrapApplication, args);
+        new AppExecutors().diskIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                for (BootStrapAppModel model : runnableExecute) {
+                    model.bootStrapProxy.execute(args);
+                }
             }
         });
-    }
-
-
-    /**
-     * 反射执行方法
-     *
-     * @param obj  执行对象
-     * @param args 执行参数
-     */
-    private static void executeMethod(IBootstrap model, Object... args) {
-        model.execute(args);
     }
 
 
