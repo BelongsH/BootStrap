@@ -33,8 +33,9 @@ public class BootStrapAppBuilder extends JsonWriterTemplate {
 
     private Map<String, List<Map<String, String>>> map = new HashMap<>();
 
-    private static final String DEFAULT_NAME = "com.balala.bootstrap.bridge.BootStrapProxy";
+//    private static final String DEFAULT_NAME = "com.balala.bootstrap.bridge.BootStrapProxy";
 
+    private static final String DEFAULT_NAME = "com.balala.bootstrap.bridge.IBootstrap";
 
     public BootStrapAppBuilder(ProcessingEnvironment processingEnvironment) {
         this.processingEnvironment = processingEnvironment;
@@ -44,7 +45,7 @@ public class BootStrapAppBuilder extends JsonWriterTemplate {
 
     public void loopAddToMap(TypeElement originalType) {
         if (!isSubtype(originalType.asType(), DEFAULT_NAME)) {
-            this.processingEnvironment.getMessager().printMessage(Diagnostic.Kind.ERROR, "------标记为BootStrapApp的注解必须实现BootstrapWrapApplication接口-----" + originalType.asType());
+            this.processingEnvironment.getMessager().printMessage(Diagnostic.Kind.ERROR, "------标记为BootStrapApp的注解必须实现IBootstrap接口或者继承自BootStrapProxy----->文件：" + originalType.asType());
             return;
         }
         BootStrapApp bootStrapApp = originalType.getAnnotation(BootStrapApp.class);

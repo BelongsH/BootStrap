@@ -72,6 +72,7 @@ public class JsonWriterTemplate {
                             break;
                         }
                     }
+                    tm = superTypeElem.getSuperclass();
                 } else {
                     tm = superTypeElem.getSuperclass();
                 }
