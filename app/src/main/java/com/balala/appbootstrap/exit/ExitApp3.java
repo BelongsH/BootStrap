@@ -1,4 +1,4 @@
-package com.balala.appbootstrap.call;
+package com.balala.bootstrapdemo.exit;
 
 import android.app.Activity;
 import android.widget.Toast;
@@ -9,20 +9,20 @@ import com.balala.bootstrap.bridge.IBootstrap;
 /**
  * <pre>
  *     author : 刘辉良
- *     e-mail : belongs_mymusic@163.com
- *     time   : 2019/12/05
+ *     e-mail : liuhuiliang@lexiangbao.com
+ *     time   : 2019/12/10
  *     desc   :
  *     version: 1.0
  * </pre>
  */
-@Component(group = "sayHello", name = "SayHello1")
-public class SayHello1 implements IBootstrap {
 
+@Component(name = "ExitApp3", group = "exit")
+public class ExitApp3 implements IBootstrap {
     @Override
     public void execute(Object... args) {
-        if (args[0] instanceof Activity) {
+        if (args[0] != null && args[0] instanceof Activity) {
             Activity activity = (Activity) args[0];
-            Toast.makeText(activity, "hello world SayHello1", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, "ExitApp3", Toast.LENGTH_SHORT).show();
         }
     }
 }
