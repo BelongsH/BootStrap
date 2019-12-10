@@ -15,14 +15,8 @@ import java.util.List;
  *     version: 1.0
  * </pre>
  */
-public class BootStrap {
+public final class BootStrap {
 
-
-    /***
-     *  根据组名，获取该组实例
-     * @param group  组名
-     * @return 组实例
-     */
     public static List<IBootstrap> findListForGroup(String group) {
         try {
             return BootStrapCore.findListForGroupMain(group);
@@ -33,17 +27,34 @@ public class BootStrap {
     }
 
 
-    /***
-     *  直接调用相关信息
-     * @param group 相关组的信息
-     */
     public static void invokeGroupMethod(String group, Object... args) {
         try {
-            BootStrapCore.invokeGroupMethod(group, args);
+            BootStrapApplicationCore.invokeMethod(group, args);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+
+//    /***
+//     *  根据组名，获取该组实例
+//     * @param group  组名
+//     * @return 组实例
+//     */
+
+//
+//
+//    /***
+//     *  直接调用相关信息
+//     * @param group 相关组的信息
+//     */
+//    public static void invokeGroupMethod(String group, Object... args) {
+//        try {
+//            BootStrapCore.invokeGroupMethod(group, args);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
 //    /***

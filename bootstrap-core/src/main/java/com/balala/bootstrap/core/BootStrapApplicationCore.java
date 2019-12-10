@@ -40,7 +40,7 @@ public class BootStrapApplicationCore {
      */
     static void invokeApplicaitonOnCreate(Application application) {
         try {
-            invokeApp(application);
+            invokeMethod(DEFAULT_APP_NAME, application);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -53,22 +53,19 @@ public class BootStrapApplicationCore {
      * @param args app
      * @throws Exception
      */
-    private static void invokeApp(final Object... args) throws Exception {
-        List<Map<String, String>> targetGroup = findClassMap2Cache().get(DEFAULT_APP_NAME);
+    static void invokeMethod(String groupName, final Object... args) throws Exception {
+        List<Map<String, String>> targetGroup = findClassMap2Cache().get(groupName);
         if (targetGroup == null || targetGroup.isEmpty()) return;
 
         //获取json->对象
         List<BootStrapAppModel> models = new ArrayList<>();
-        List<IBootstrap> values = findListForGroupMain(DEFAULT_APP_NAME);
+        List<IBootstrap> values = findListForGroupMain(groupName);
         for (Map fifter : targetGroup) {
             BootStrapAppModel model = BootStrapAppModel.transform(fifter);
             for (IBootstrap iBootstrap : values) {
                 String name = iBootstrap.getClass().getName();
                 if (name.equals(model.className)) {
-                    //只过滤包含->BootstrapWrapApplication接口
-                    if (iBootstrap instanceof BootStrapProxy) {
-                        model.bootStrapProxy = (BootStrapProxy) iBootstrap;
-                    }
+                    model.bootStrapProxy = iBootstrap;
                 }
             }
             models.add(model);
